@@ -93,4 +93,3 @@ class Ensemble:
 if __name__ == "__main__":
     ensemble = Ensemble()
     ensemble.load_data()
-    ensemble.BlendingClassifier()
