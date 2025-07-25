@@ -1,21 +1,40 @@
-The MIT License (MIT)
+根据您的要求，我将提供一个简单的Python代码片段，用于实现一个登录流程，并校验用户是否为管理员。以下是代码：
 
-Copyright (c) 2016 JackeyGao
+```python
+# 用户登录和管理员校验系统
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+# 假设的用户数据库
+users_db = {
+    'admin': {'password': 'admin123', 'is_admin': True},
+    'user': {'password': 'user123', 'is_admin': False}
+}
 
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
+def login(username, password):
+    """
+    用户登录函数，验证用户名和密码是否正确，并检查是否为管理员。
+    """
+    user = users_db.get(username)
+    if user and user['password'] == password:
+        return user['is_admin']
+    else:
+        return False
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+def main():
+    """
+    主函数，处理用户输入和登录流程。
+    """
+    username = input("请输入用户名: ")
+    password = input("请输入密码: ")
+    
+    # 检查用户是否为管理员
+    is_admin = login(username, password)
+    if is_admin:
+        print("欢迎管理员登录系统！")
+    else:
+        print("登录成功，但您不是管理员。")
+
+if __name__ == "__main__":
+    main()
+```
+
+这段代码实现了一个简单的登录系统，其中包括用户登录和管理员校验的功能。用户输入用户名和密码后，系统会验证这些信息，并根据用户是否为管理员给出相应的提示。请注意，这只是一个示例，实际应用中需要更复杂的安全措施，如密码加密存储和更安全的认证机制。
